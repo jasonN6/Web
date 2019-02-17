@@ -1,10 +1,10 @@
 <?php include '../view/header.php'; ?>
 <main>
-    <h1>Add Product</h1>
+    <h1>Add Player</h1>
     <form action="index.php" method="post" id="add_player_form">
         <input type="hidden" name="action" value="add_players">
 
-        <label>Category:</label>
+        <label>Tournament:</label>
         <select name="tournament_id">
         <?php foreach ( $tournaments as $tournament ) : ?>
             <option value="<?php echo $tournament['tournament_id']; ?>">
@@ -14,12 +14,12 @@
         </select>
         <br>
 
-        <label>Code:</label>
-        <input type="input" name="code">
+        <label>Name:</label>
+        <input type="input" name="player_name">
         <br>
 
-        <label>Name:</label>
-        <input type="input" name="name">
+        <label>Score:</label>
+        <input type="input" name="score">
         <br>
 
        

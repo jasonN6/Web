@@ -8,5 +8,5 @@
 
 <!-- the body section -->
 <body>
-<header><h1>My Guitar Shop</h1></header>
+<header><h1>Golf Tournaments</h1></header>
        

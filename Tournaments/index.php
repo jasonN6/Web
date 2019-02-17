@@ -42,7 +42,7 @@ if ($action == 'list_players') {
     $tournament_id = filter_input(INPUT_POST, 'tournament_id', 
             FILTER_VALIDATE_INT);
     $name = filter_input(INPUT_POST, 'player_name');
-    $score = filter_input(INPUT_POST, 'score');
+    $score = filter_input(INPUT_POST, 'score', FILTER_VALIDATE_FLOAT);
 
     // Validate the inputs
     if ($player_id == NULL || $player_id == FALSE || $tournament_id == NULL || 
@@ -56,12 +56,12 @@ if ($action == 'list_players') {
         // Display the Player List page for the current tournament
         header("Location: .?tournament_id=$tournament_id");
     }
-} else if ($action == 'delete_players') {
+} else if ($action == 'delete_player') {
     $player_id = filter_input(INPUT_POST, 'player_id', 
             FILTER_VALIDATE_INT);
     $tournament_id = filter_input(INPUT_POST, 'tournament_id', 
             FILTER_VALIDATE_INT);
-    if ($player_id == NULL ) {
+    if ($player_id == NULL || $player_id == FALSE) {
         $error = "Missing or incorrect player id or tournament id.";
         include('../errors/error.php');
     } else { 
@@ -75,10 +75,10 @@ if ($action == 'list_players') {
     $tournament_id = filter_input(INPUT_POST, 'tournament_id', 
             FILTER_VALIDATE_INT);
     $name = filter_input(INPUT_POST, 'player_name');
-    $score = filter_input(INPUT_POST, 'score');
+    $score = filter_input(INPUT_POST, 'score',FILTER_VALIDATE_FLOAT);
    
-    if ($tournament_id == NULL || $tournament_id == FALSE || $name == NULL || 
-            $score == NULL /*|| $price == NULL || $price == FALSE*/) {
+    if ($tournament_id == NULL || $tournament_id == FALSE 
+            /*|| $price == NULL || $price == FALSE*/) {
         $error = "Invalid player data. Check all fields and try again.";
         include('../errors/error.php');
     } else { 

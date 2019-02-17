@@ -38,7 +38,7 @@ function get_player($player_id) {
 function delete_player($player_id) {
     global $db;
     $query = 'DELETE FROM players
-              WHERE player = :player_id';
+              WHERE player_id = :player_id';
     $statement = $db->prepare($query);
     $statement->bindValue(':player_id', $player_id);
     $statement->execute();
