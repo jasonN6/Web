@@ -1,19 +1,19 @@
 <?php
-function get_categories() {
+function get_tournaments() {
     global $db;
-    $query = 'SELECT * FROM categories
-              ORDER BY categoryID';
+    $query = 'SELECT * FROM tournaments
+              ORDER BY tournament_id';
     $statement = $db->prepare($query);
     $statement->execute();
     return $statement; 
 }
 
-function get_category_name($category_id) {
+function get_tournament_name($tournament_id) {
     global $db;
     $query = 'SELECT * FROM categories
-              WHERE categoryID = :category_id';    
+              WHERE tournament_id = :tournament_id';    
     $statement = $db->prepare($query);
-    $statement->bindValue(':category_id', $category_id);
+    $statement->bindValue(':tournament_id', $tournament_id);
     $statement->execute();    
     $category = $statement->fetch();
     $statement->closeCursor();    
@@ -21,7 +21,7 @@ function get_category_name($category_id) {
     return $category_name;
 }
 
-function add_category($name) {
+function add_tournament($name) {
     global $db;
     $query = 'INSERT INTO categories (categoryName)
               VALUES (:name)';
@@ -31,12 +31,12 @@ function add_category($name) {
     $statement->closeCursor();    
 }
 
-function delete_category($category_id) {
+function delete_tournament($tournament_id) {
     global $db;
     $query = 'DELETE FROM categories
-              WHERE categoryID = :category_id';
+              WHERE tournament_id = :tournament_id';
     $statement = $db->prepare($query);
-    $statement->bindValue(':category_id', $category_id);
+    $statement->bindValue(':tournament_id', $tournament_id);
     $statement->execute();
     $statement->closeCursor();
 }

@@ -2,7 +2,7 @@
 <main>
     <aside>
         <h1>Categories</h1>
-        <?php include '../view/category_nav.php'; ?>
+        <?php include '../view/tournament_nav.php'; ?>
     </aside>
     <section>
         <h1><?php echo $name; ?></h1>
@@ -20,8 +20,8 @@
                  (You save $<?php echo $discount_amount_f; ?>)</p>
             <form action="<?php echo '../cart' ?>" method="post">
                 <input type="hidden" name="action" value="add">
-                <input type="hidden" name="product_id"
-                       value="<?php echo $product_id; ?>">
+                <input type="hidden" name="players_id"
+                       value="<?php echo $players_id; ?>">
                 <b>Quantity:</b>
                 <input id="quantity" type="text" name="quantity" value="1" size="2">
                 <br><br>

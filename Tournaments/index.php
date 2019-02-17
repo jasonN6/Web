@@ -1,110 +1,108 @@
 <?php
 require('../model/database.php');
-require('../model/product_db.php');
-require('../model/category_db.php');
+require('../model/players_db.php');
+require('../model/tournaments_db.php');
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
     if ($action == NULL) {
-        $action = 'list_products';
+        $action = 'list_players';
     }
 }
 
-if ($action == 'list_products') {
-    // Get the current category ID
-    $category_id = filter_input(INPUT_GET, 'category_id', 
+if ($action == 'list_players') {
+    // Get the current tournament ID
+    $tournament_id = filter_input(INPUT_GET, 'tournament_id', 
             FILTER_VALIDATE_INT);
-    if ($category_id == NULL || $category_id == FALSE) {
-        $category_id = 1;
+    if ($tournament_id == NULL || $tournament_id == FALSE) {
+        $tournament_id = 1;
     }
     
-    // Get product and category data
-    $category_name = get_category_name($category_id);
-    $categories = get_categories();
-    $products = get_products_by_category($category_id);
+    // Get player and tournament data
+    $tournament_name = get_tournament_name($tournament_id);
+    $tournaments = get_tournaments();
+    $players = get_players_by_tournament($tournament_id);
 
-    // Display the product list
-    include('product_list.php');
+    // Display the player list
+    include('players_list.php');
 } else if ($action == 'show_edit_form') {
-    $product_id = filter_input(INPUT_POST, 'product_id', 
+    $player_id = filter_input(INPUT_POST, 'player_id', 
             FILTER_VALIDATE_INT);
-    if ($product_id == NULL || $product_id == FALSE) {
-        $error = "Missing or incorrect product id.";
+    if ($player_id == NULL || $player_id == FALSE) {
+        $error = "Missing or incorrect player id.";
         include('../errors/error.php');
     } else { 
-        $product = get_product($product_id);
-        include('product_edit.php');
+        $player = get_player($player_id);
+        include('players_edit.php');
     }
-} else if ($action == 'update_product') {
-    $product_id = filter_input(INPUT_POST, 'product_id', 
+} else if ($action == 'update_player') {
+    $player_id = filter_input(INPUT_POST, 'player_id', 
             FILTER_VALIDATE_INT);
-    $category_id = filter_input(INPUT_POST, 'category_id', 
+    $tournament_id = filter_input(INPUT_POST, 'tournament_id', 
             FILTER_VALIDATE_INT);
-    $code = filter_input(INPUT_POST, 'code');
-    $name = filter_input(INPUT_POST, 'name');
-    $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_FLOAT);
+    $name = filter_input(INPUT_POST, 'player_name');
+    $score = filter_input(INPUT_POST, 'score');
 
     // Validate the inputs
-    if ($product_id == NULL || $product_id == FALSE || $category_id == NULL || 
-            $category_id == FALSE || $code == NULL || $name == NULL || 
-            $price == NULL || $price == FALSE) {
-        $error = "Invalid product data. Check all fields and try again.";
+    if ($player_id == NULL || $player_id == FALSE || $tournament_id == NULL || 
+            $tournament_id == FALSE || $name == NULL || $score == NULL 
+            ) {
+        $error = "Invalid player data. Check all fields and try again.";
         include('../errors/error.php');
     } else {
-        update_product($product_id, $category_id, $code, $name, $price);
+        update_player($player_id, $tournament_id, $name, $score);
 
-        // Display the Product List page for the current category
-        header("Location: .?category_id=$category_id");
+        // Display the Player List page for the current tournament
+        header("Location: .?tournament_id=$tournament_id");
     }
-} else if ($action == 'delete_product') {
-    $product_id = filter_input(INPUT_POST, 'product_id', 
+} else if ($action == 'delete_players') {
+    $player_id = filter_input(INPUT_POST, 'player_id', 
             FILTER_VALIDATE_INT);
-    $category_id = filter_input(INPUT_POST, 'category_id', 
+    $tournament_id = filter_input(INPUT_POST, 'tournament_id', 
             FILTER_VALIDATE_INT);
-    if ($category_id == NULL || $category_id == FALSE ||
-            $product_id == NULL || $product_id == FALSE) {
-        $error = "Missing or incorrect product id or category id.";
+    if ($player_id == NULL ) {
+        $error = "Missing or incorrect player id or tournament id.";
         include('../errors/error.php');
     } else { 
-        delete_product($product_id);
-        header("Location: .?category_id=$category_id");
+        delete_player($player_id);
+        header("Location: .?tournament_id=$tournament_id");
     }
 } else if ($action == 'show_add_form') {
-    $categories = get_categories();
-    include('product_add.php');
-} else if ($action == 'add_product') {
-    $category_id = filter_input(INPUT_POST, 'category_id', 
+    $tournaments = get_tournaments();
+    include('players_add.php');
+} else if ($action == 'add_players') {
+    $tournament_id = filter_input(INPUT_POST, 'tournament_id', 
             FILTER_VALIDATE_INT);
-    $code = filter_input(INPUT_POST, 'code');
-    $name = filter_input(INPUT_POST, 'name');
-    $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_FLOAT);
-    if ($category_id == NULL || $category_id == FALSE || $code == NULL || 
-            $name == NULL || $price == NULL || $price == FALSE) {
-        $error = "Invalid product data. Check all fields and try again.";
+    $name = filter_input(INPUT_POST, 'player_name');
+    $score = filter_input(INPUT_POST, 'score');
+   
+    if ($tournament_id == NULL || $tournament_id == FALSE || $name == NULL || 
+            $score == NULL /*|| $price == NULL || $price == FALSE*/) {
+        $error = "Invalid player data. Check all fields and try again.";
         include('../errors/error.php');
     } else { 
-        add_product($category_id, $code, $name, $price);
-        header("Location: .?category_id=$category_id");
+        add_player($tournament_id, $name, $score /*$price*/);
+        header("Location: .?tournament_id=$tournament_id");
     }
-} else if ($action == 'list_categories') {
-    $categories = get_categories();
-    include('category_list.php');
-} else if ($action == 'add_category') {
+} else if ($action == 'list_tournaments') {
+    $tournaments = get_tournaments();
+    include('tournament_list.php');
+} else if ($action == 'add_tournament') {
     $name = filter_input(INPUT_POST, 'name');
 
     // Validate inputs
     if ($name == NULL) {
-        $error = "Invalid category name. Check name and try again.";
+        $error = "Invalid tournament name. Check name and try again.";
         include('../errors/error.php');
     } else {
-        add_category($name);
-        header('Location: .?action=list_categories');  // display the Category List page
+        add_tournament($name);
+        header('Location: .?action=list_tournaments');  // display the Category List page
     }
-} else if ($action == 'delete_category') {
-    $category_id = filter_input(INPUT_POST, 'category_id', 
+} else if ($action == 'delete_tournament') {
+    $tournament_id = filter_input(INPUT_POST, 'tournament_id', 
             FILTER_VALIDATE_INT);
-    delete_category($category_id);
-    header('Location: .?action=list_categories');      // display the Category List page
+    delete_tournament($tournament_id);
+    header('Location: .?action=list_tournaments');      // display the Category List page
 }
 ?>

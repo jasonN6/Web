@@ -1,0 +1,77 @@
+<?php
+function get_players() {
+    global $db;
+    $query = 'SELECT * FROM players
+              ORDER BY players_id';
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $players = $statement->fetchAll();
+    $statement->closeCursor();
+    return $players;
+}
+
+function get_players_by_tournament($tournament_id) {
+    global $db;
+    $query = 'SELECT * FROM players
+              WHERE players.tournament_id = :tournament_id
+              ORDER BY player_id';
+    $statement = $db->prepare($query);
+    $statement->bindValue(":tournament_id", $tournament_id);
+    $statement->execute();
+    $players = $statement->fetchAll();
+    $statement->closeCursor();
+    return $players;
+}
+
+function get_player($player_id) {
+    global $db;
+    $query = 'SELECT * FROM players
+              WHERE player_id = :player_id';
+    $statement = $db->prepare($query);
+    $statement->bindValue(":player_id", $player_id);
+    $statement->execute();
+    $player = $statement->fetch();
+    $statement->closeCursor();
+    return $player;
+}
+
+function delete_player($player_id) {
+    global $db;
+    $query = 'DELETE FROM players
+              WHERE player = :player_id';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':player_id', $player_id);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+function add_player($tournament_id, $player_name, $score) {
+    global $db;
+    $query = 'INSERT INTO players
+                 (tournament_id, player_name, score)
+              VALUES
+                 (:tournament_id, :player_name, :score)';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':tournament_id', $tournament_id);
+    $statement->bindValue(':player_name', $player_name);
+    $statement->bindValue(':score', $score);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+function update_player($player_id, $tournament_id, $player_name, $score) {
+    global $db;
+    $query = 'UPDATE players
+              SET tournament_id = :tournament_id,
+                  player_name = :player_name,
+                  score = :score,                 
+               WHERE player_id = :player_id';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':tournament_id', $tournament_id);
+    $statement->bindValue(':$player_name', $player_name);
+    $statement->bindValue(':$score', $score);
+    $statement->bindValue(':$player_id', $player_id);
+    $statement->execute();
+    $statement->closeCursor();
+}
+?>
