@@ -27,13 +27,15 @@ function add_tournament($tournament_name,$start_date,$end_date) {
               VALUES (:tournament_name,:start_date,:end_date)';
     $statement = $db->prepare($query);
     $statement->bindValue(':tournament_name', $$tournament_name);
-    $statement->execute();
+    $statement->bindValue(":start_data",$start_date);
+     $statement->bindValue(":end_data",$end_date);
+    $statement->execute();  
     $statement->closeCursor();    
 }
 
 function delete_tournament($tournament_id) {
     global $db;
-    $query = 'DELETE FROM categories
+    $query = 'DELETE FROM tournaments
               WHERE tournament_id = :tournament_id';
     $statement = $db->prepare($query);
     $statement->bindValue(':tournament_id', $tournament_id);

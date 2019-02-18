@@ -1,17 +1,17 @@
 <?php include '../view/header.php'; ?>
 <main>
 
-    <h1>Product List</h1>
+    <h1>Player List</h1>
 
     <aside>
         <!-- display a list of categories -->
-        <h2>Categories</h2>
+        <h2>Tournaments</h2>
         <?php include '../view/tournament_nav.php'; ?>        
     </aside>
 
     <section>
         <!-- display a table of player -->
-        <h2><?php echo $tournament_name; ?></h2>
+        
         <table>
             <tr>
                 <th>Player ID</th>
@@ -49,7 +49,7 @@
             <?php endforeach; ?>
         </table>
         <p><a href="?action=show_add_form">Add PLayer</a></p>
-        <p><a href="?action=list_categories">List Tournaments</a></p>
+        <p><a href="?action=list_tournaments">List Tournaments</a></p>
     </section>
 
 </main>

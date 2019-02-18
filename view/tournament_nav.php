@@ -7,6 +7,7 @@
                     <a href="?tournament_id=<?php 
                               echo $tournament['tournament_id']; ?>">
                         <?php echo $tournament['tournament_name']; ?>
+                       
                     </a>
                 </li>
                 <?php endforeach; ?>

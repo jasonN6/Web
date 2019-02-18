@@ -56,7 +56,7 @@ if ($action == 'list_players') {
         // Display the Player List page for the current tournament
         header("Location: .?tournament_id=$tournament_id");
     }
-} else if ($action == 'delete_player') {
+} else if ($action == 'delete_players') {
     $player_id = filter_input(INPUT_POST, 'player_id', 
             FILTER_VALIDATE_INT);
     $tournament_id = filter_input(INPUT_POST, 'tournament_id', 
@@ -89,14 +89,14 @@ if ($action == 'list_players') {
     $tournaments = get_tournaments();
     include('tournament_list.php');
 } else if ($action == 'add_tournament') {
-    $name = filter_input(INPUT_POST, 'name');
+    $t_name = filter_input(INPUT_POST, 'tournament_name');
 
     // Validate inputs
-    if ($name == NULL) {
+    if ($t_name == NULL) {
         $error = "Invalid tournament name. Check name and try again.";
         include('../errors/error.php');
     } else {
-        add_tournament($name);
+        add_tournament($t_name);
         header('Location: .?action=list_tournaments');  // display the Category List page
     }
 } else if ($action == 'delete_tournament') {
