@@ -36,25 +36,25 @@ if ($action == 'list_players') {
         $player = get_player($player_id);
         include('players_edit.php');
     }
-} else if ($action == 'update_player') {
-    $player_id = filter_input(INPUT_POST, 'player_id', 
+} else if ($action == 'update_players') {
+    $p_id = filter_input(INPUT_POST, 'p_id', 
             FILTER_VALIDATE_INT);
-    $tournament_id = filter_input(INPUT_POST, 'tournament_id', 
+    $t_id = filter_input(INPUT_POST, 't_id', 
             FILTER_VALIDATE_INT);
-    $name = filter_input(INPUT_POST, 'player_name');
-    $score = filter_input(INPUT_POST, 'score', FILTER_VALIDATE_FLOAT);
+    $p_name = filter_input(INPUT_POST, 'p_name');
+    $Score = filter_input(INPUT_POST, 'Score', FILTER_VALIDATE_FLOAT);
 
     // Validate the inputs
-    if ($player_id == NULL || $player_id == FALSE || $tournament_id == NULL || 
-            $tournament_id == FALSE || $name == NULL || $score == NULL 
+    if ($t_id == NULL || 
+            $t_id == FALSE || $p_name == NULL || $Score == NULL 
             ) {
         $error = "Invalid player data. Check all fields and try again.";
         include('../errors/error.php');
     } else {
-        update_player($player_id, $tournament_id, $name, $score);
+        update_player($p_id, $t_id, $p_name, $Score);
 
         // Display the Player List page for the current tournament
-        header("Location: .?tournament_id=$tournament_id");
+        header("Location: .?tournament_id=$t_id");
     }
 } else if ($action == 'delete_players') {
     $player_id = filter_input(INPUT_POST, 'player_id', 

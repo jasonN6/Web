@@ -34,7 +34,7 @@
                            value="<?php echo $player['player_id']; ?>">
                     <input type="hidden" name="category_id"
                            value="<?php echo $player['tournament_id']; ?>">
-                    <input type="submit" value="Edit">
+                    <input type="submit" value="Update">
                 </form></td>
                 <td><form action="." method="post">
                     <input type="hidden" name="action"
@@ -48,7 +48,7 @@
             </tr>
             <?php endforeach; ?>
         </table>
-        <p><a href="?action=show_add_form">Add PLayer</a></p>
+        <p><a href="?action=show_add_form">Add Player</a></p>
         <p><a href="?action=list_tournaments">List Tournaments</a></p>
     </section>
 
