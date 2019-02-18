@@ -26,7 +26,7 @@ function add_tournament($tournament_name,$start_date,$end_date) {
     $query = 'INSERT INTO tournaments(tournament_name, start_date, end_date) 
             VALUES (:tournament_name, :start_date, :end_date)';
     $statement = $db->prepare($query);
-    $statement->bindValue(':tournament_name', $$tournament_name);
+    $statement->bindValue(':tournament_name', $tournament_name);
     $statement->bindValue(':start_date',$start_date);
     $statement->bindValue(':end_date',$end_date);
     $statement->execute();  
