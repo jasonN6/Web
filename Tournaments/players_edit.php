@@ -10,7 +10,7 @@
 
         <label>Category ID:</label>
         <input type="category_id" name="category_id"
-               value="<?php echo $player['category_id']; ?>">
+               value="<?php echo $player['tournament_id']; ?>">
         <br>
 
         <label>Code:</label>
@@ -29,7 +29,7 @@
         <input type="submit" value="Save Changes">
         <br>
     </form>
-    <p><a href="index.php?action=list_players">View Product List</a></p>
+    <p><a href="index.php?action=list_players">View Player List</a></p>
 
 </main>
 <?php include '../view/footer.php'; ?>

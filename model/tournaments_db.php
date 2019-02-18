@@ -23,12 +23,12 @@ function get_tournament_name($tournament_id) {
 
 function add_tournament($tournament_name,$start_date,$end_date) {
     global $db;
-    $query = 'INSERT INTO tournaments (tournament_name,start_date,end_date)
-              VALUES (:tournament_name,:start_date,:end_date)';
+    $query = 'INSERT INTO tournaments(tournament_name, start_date, end_date) 
+            VALUES (:tournament_name, :start_date, :end_date)';
     $statement = $db->prepare($query);
     $statement->bindValue(':tournament_name', $$tournament_name);
-    $statement->bindValue(":start_data",$start_date);
-     $statement->bindValue(":end_data",$end_date);
+    $statement->bindValue(':start_date',$start_date);
+    $statement->bindValue(':end_date',$end_date);
     $statement->execute();  
     $statement->closeCursor();    
 }

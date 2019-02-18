@@ -87,17 +87,18 @@ if ($action == 'list_players') {
     }
 } else if ($action == 'list_tournaments') {
     $tournaments = get_tournaments();
-    include('tournament_list.php');
+    include('tournaments_list.php');
 } else if ($action == 'add_tournament') {
-    $t_name = filter_input(INPUT_POST, 'tournament_name');
-
+    $tournament_name = filter_input(INPUT_POST, 'tournament_name');
+    $start_date = filter_input(INPUT_POST, 'start_date');
+    $end_date = filter_input(INPUT_POST, 'end_date');
     // Validate inputs
-    if ($t_name == NULL) {
+    if ($tournament_name == NULL || $start_date == NULL || $end_date == NULL) {
         $error = "Invalid tournament name. Check name and try again.";
         include('../errors/error.php');
     } else {
-        add_tournament($t_name);
-        header('Location: .?action=list_tournaments');  // display the Category List page
+        add_tournament($tournament_name,$start_date,$end_date);
+       header('Location: .?action=list_tournaments');  // display the Category List page
     }
 } else if ($action == 'delete_tournament') {
     $tournament_id = filter_input(INPUT_POST, 'tournament_id', 
