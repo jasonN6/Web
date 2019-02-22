@@ -45,7 +45,7 @@ function delete_player($player_id) {
     $statement->closeCursor();
 }
 
-function add_player($tournament_id, $player_name, $score) {
+function add_player($tournament_id, $player_name, $score,$age) {
     global $db;
     $query = 'INSERT INTO players
                  (tournament_id, player_name, score)
@@ -55,11 +55,12 @@ function add_player($tournament_id, $player_name, $score) {
     $statement->bindValue(':tournament_id', $tournament_id);
     $statement->bindValue(':player_name', $player_name);
     $statement->bindValue(':score', $score);
+    $statement->bindValue(':age', $age);
     $statement->execute();
     $statement->closeCursor();
 }
 
-function update_player($p_id, $t_id, $p_name, $Score) {
+function update_player($p_id, $t_id, $p_name, $Score,$Age) {
     global $db;   
     $query = 'UPDATE players SET tournament_id = :t_id, player_name = :p_name,score = :Score               
                WHERE player_id = :p_id';
@@ -68,6 +69,7 @@ function update_player($p_id, $t_id, $p_name, $Score) {
     $statement->bindValue(':p_name', $p_name);
     $statement->bindValue(':Score', $Score);  
     $statement->bindValue(':p_id', $p_id);
+  
     $statement->execute();
     $statement->closeCursor();
 }

@@ -43,15 +43,16 @@ if ($action == 'list_players') {
             FILTER_VALIDATE_INT);
     $p_name = filter_input(INPUT_POST, 'p_name');
     $Score = filter_input(INPUT_POST, 'Score', FILTER_VALIDATE_FLOAT);
+    $Age = filter_input(INPUT_POST, 'Age', FILTER_VALIDATE_INT);
 
     // Validate the inputs
     if ($t_id == NULL || 
             $t_id == FALSE || $p_name == NULL || $Score == NULL 
-            ) {
+            || Age == NULL || Age == FALSE) {
         $error = "Invalid player data. Check all fields and try again.";
         include('../errors/error.php');
     } else {
-        update_player($p_id, $t_id, $p_name, $Score);
+        update_player($p_id, $t_id, $p_name, $Score,$Age);
 
         // Display the Player List page for the current tournament
         header("Location: .?tournament_id=$t_id");
@@ -76,7 +77,7 @@ if ($action == 'list_players') {
             FILTER_VALIDATE_INT);
     $name = filter_input(INPUT_POST, 'player_name');
     $score = filter_input(INPUT_POST, 'score',FILTER_VALIDATE_FLOAT);
-   
+    $age = filter_input(INPUT_POST, 'age',FILTER_VALIDATE_FLOAT);
     if ($tournament_id == NULL || $tournament_id == FALSE 
             /*|| $price == NULL || $price == FALSE*/) {
         $error = "Invalid player data. Check all fields and try again.";

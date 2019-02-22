@@ -18,6 +18,7 @@
                 <th>Tournament ID</th>
                 <th class="right">Name</th>
                 <th class="right">Score</th>
+                <th class="right">Age</th>
                 <th>Update</th>
                 <th>Delete</th>
             </tr>
@@ -27,6 +28,7 @@
                 <td><?php echo $player['tournament_id']; ?></td>
                 <td class="right"><?php echo $player['player_name']; ?></td>
                 <td class="right"><?php echo $player['score']; ?></td>
+                <td class="right"><?php echo $player['age']; ?></td>
                 <td><form action="." method="post">
                     <input type="hidden" name="action"
                            value="show_edit_form">

@@ -26,7 +26,7 @@
         <input type="input" name="Score"
                value="<?php echo $player['score']; ?>">
         <br>
-
+       
         
 
         <label>&nbsp;</label>
