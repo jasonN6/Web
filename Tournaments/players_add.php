@@ -21,7 +21,10 @@
         <label>Score:</label>
         <input type="input" name="score">
         <br>
-
+        
+        <label>Age:</label>
+        <input type="input" name="age">
+        <br>
        
 
         <label>&nbsp;</label>

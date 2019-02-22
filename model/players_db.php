@@ -48,9 +48,9 @@ function delete_player($player_id) {
 function add_player($tournament_id, $player_name, $score,$age) {
     global $db;
     $query = 'INSERT INTO players
-                 (tournament_id, player_name, score)
+                 (tournament_id, player_name, score,age)
               VALUES
-                 (:tournament_id, :player_name, :score)';
+                 (:tournament_id, :player_name, :score,:age)';
     $statement = $db->prepare($query);
     $statement->bindValue(':tournament_id', $tournament_id);
     $statement->bindValue(':player_name', $player_name);

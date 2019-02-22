@@ -77,13 +77,13 @@ if ($action == 'list_players') {
             FILTER_VALIDATE_INT);
     $name = filter_input(INPUT_POST, 'player_name');
     $score = filter_input(INPUT_POST, 'score',FILTER_VALIDATE_FLOAT);
-    $age = filter_input(INPUT_POST, 'age',FILTER_VALIDATE_FLOAT);
+    $age = filter_input(INPUT_POST, 'age',FILTER_VALIDATE_INT);
     if ($tournament_id == NULL || $tournament_id == FALSE 
             /*|| $price == NULL || $price == FALSE*/) {
         $error = "Invalid player data. Check all fields and try again.";
         include('../errors/error.php');
     } else { 
-        add_player($tournament_id, $name, $score /*$price*/);
+        add_player($tournament_id, $name, $score,$age /*$price*/);
         header("Location: .?tournament_id=$tournament_id");
     }
 } else if ($action == 'list_tournaments') {
