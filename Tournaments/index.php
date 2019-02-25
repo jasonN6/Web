@@ -101,7 +101,7 @@ if ($action == 'list_players') {
         add_tournament($tournament_name,$start_date,$end_date);
        header('Location: .?action=list_tournaments');  // display the Category List page
     }
-} else if ($action == 'delete_tournament') {
+} else if ($action == 'delete_tournaments') {
     $tournament_id = filter_input(INPUT_POST, 'tournament_id', 
             FILTER_VALIDATE_INT);
     delete_tournament($tournament_id);
