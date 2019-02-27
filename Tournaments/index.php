@@ -2,6 +2,7 @@
 require('../model/database.php');
 require('../model/players_db.php');
 require('../model/tournaments_db.php');
+require('../model/clubs_db.php');
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
@@ -114,5 +115,28 @@ else if ($action == 'delete_playersfromtournament') {
     delete_playerbyTournament($tournament_id);
     
     header('Location: .?action=list_tournaments');      // display the Category List page
+}
+else if ($action == 'list_clubs') {
+    $clubs = get_clubs();
+    include('../Clubs/clubs_list.php');
+}
+else if ($action == 'add_club') {
+    $club_name = filter_input(INPUT_POST, 'club_name');
+    $no_of_players = filter_input(INPUT_POST, 'no_of_players');
+   
+    // Validate inputs
+    if ($club_name == NULL || $no_of_players == NULL ) {
+        $error = "Invalid tournament name. Check name and try again.";
+        include('../errors/error.php');
+    } else {
+        add_club($club_name,$no_of_players);
+       header('Location: .?action=list_clubs');  // display the Category List page
+    }
+} else if ($action == 'delete_clubs') {
+    $club_id = filter_input(INPUT_POST, 'club_id', 
+            FILTER_VALIDATE_INT);
+   
+    delete_club($club_id);
+    header('Location: .?action=list_clubs');      // display the Category List page
 }
 ?>
