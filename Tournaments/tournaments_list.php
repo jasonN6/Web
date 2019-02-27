@@ -8,6 +8,7 @@
             <th>Start Date</th>
             <th>End Date</th>
             <th>Delete</th>
+            <th>Delete Players</th>
         </tr>
         <?php foreach ($tournaments as $tournament) : ?>
         <tr>
@@ -23,6 +24,16 @@
                     <input type="submit" value="Delete">
                 </form>
             </td>
+             <td>
+                <form id="delete_player_form"
+                      action="index.php" method="post">
+                    <input type="hidden" name="action" value="delete_playersfromtournament">
+                    <input type="hidden" name="tournament_id"
+                           value="<?php echo $tournament['tournament_id']; ?>">
+                    <input type="submit" value="Delete Players">
+                </form>
+            </td>
+            
         </tr>
         <?php endforeach; ?>
     </table>
