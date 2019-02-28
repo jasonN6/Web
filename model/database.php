@@ -1,5 +1,5 @@
 <?php
-    $dsn = 'mysql:host=localhost;dbname=golf_tournaments';
+    $dsn = 'mysql:host=localhost;dbname=d00194632';
     $username = 'root';
     $password = '';
 

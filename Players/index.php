@@ -33,9 +33,9 @@ if ($action == 'list_players') {
         $player = get_player($player_id);
 
         // Get player data
-        $code = $player['player_name'];
-        $name = $player['score'];
-        
+        $name = $player['player_name'];
+        $score = $player['score'];
+        $age = $player['age'];
 
         // Calculate discounts
        

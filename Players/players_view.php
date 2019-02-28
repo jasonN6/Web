@@ -1,32 +1,20 @@
 <?php include '../view/header.php'; ?>
 <main>
     <aside>
-        <h1>Categories</h1>
+        <h1>Tournaments</h1>       
         <?php include '../view/tournament_nav.php'; ?>
     </aside>
     <section>
+        <br>
+        <br>
         <h1><?php echo $name; ?></h1>
-        <div id="left_column">
-            <p>
-                <img src="<?php echo $image_filename; ?>"
-                    alt="<?php echo $image_alt; ?>">
-            </p>
-        </div>
+       
 
         <div id="right_column">
-            <p><b>List Price:</b> $<?php echo $list_price; ?></p>
-            <p><b>Discount:</b> <?php echo $discount_percent; ?>%</p>
-            <p><b>Your Price:</b> $<?php echo $unit_price_f; ?>
-                 (You save $<?php echo $discount_amount_f; ?>)</p>
-            <form action="<?php echo '../cart' ?>" method="post">
-                <input type="hidden" name="action" value="add">
-                <input type="hidden" name="players_id"
-                       value="<?php echo $players_id; ?>">
-                <b>Quantity:</b>
-                <input id="quantity" type="text" name="quantity" value="1" size="2">
-                <br><br>
-                <input type="submit" value="Add to Cart">
-            </form>
+            <p><b>Player Name:</b> <?php echo $name; ?></p>
+            <p><b>Score:</b> <?php echo $score; ?></p>
+            <p><b>Age:</b> <?php echo $age; ?></p>
+            
         </div>
     </section>
 </main>

@@ -50,6 +50,8 @@
             </tr>
             <?php endforeach; ?>
         </table>
+        <br>
+        <br>
         <p><a href="?action=show_add_form">Add Player</a></p>
         <p><a href="?action=list_tournaments">List Tournaments</a></p>
         <p><a href="?action=list_clubs">List Clubs</a></p>

@@ -15,10 +15,10 @@ function get_tournament_name($tournament_id) {
     $statement = $db->prepare($query);
     $statement->bindValue(':tournament_id', $tournament_id);
     $statement->execute();    
-    $category = $statement->fetch();
+    $tournament = $statement->fetch();
     $statement->closeCursor();    
-    $category_name = $category['tournament_id'];
-    return $category_name;
+    $tournament_name = $tournament['tournament_name'];
+    return $tournament_name;
 }
 
 function add_tournament($tournament_name,$start_date,$end_date) {
