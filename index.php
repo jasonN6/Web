@@ -12,7 +12,7 @@
             </a>
         </li>
         <li>
-            <a href="Tournaments">
+            <a href="Controller">
                 Tournaments
             </a>
         </li>

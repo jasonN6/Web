@@ -96,7 +96,7 @@ if ($action == 'list_players') {
     $end_date = filter_input(INPUT_POST, 'end_date');
     // Validate inputs
     if ($tournament_name == NULL || $start_date == NULL || $end_date == NULL) {
-        $error = "Invalid tournament name. Check name and try again.";
+        $error = "Invalid tournament data. Check fields and try again.";
         include('../errors/error.php');
     } else {
         add_tournament($tournament_name,$start_date,$end_date);
@@ -126,7 +126,7 @@ else if ($action == 'add_club') {
    
     // Validate inputs
     if ($club_name == NULL || $no_of_players == NULL ) {
-        $error = "Invalid tournament name. Check name and try again.";
+        $error = "Invalid club fields. Check fields and try again.";
         include('../errors/error.php');
     } else {
         add_club($club_name,$no_of_players);
